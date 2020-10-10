@@ -1,0 +1,35 @@
+[33mcommit 9b8778ed4aec32b7b1268b72855bf9d1a1103475[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: mazdai <you@example.com>
+Date:   Sat Oct 10 14:52:50 2020 +0400
+
+    дописал класс User
+
+[33mcommit 1446dec7a58efc2e80f0ced35586238c43d0a6e7[m
+Author: mazdai <you@example.com>
+Date:   Sat Oct 10 14:18:55 2020 +0400
+
+    класс user
+
+[33mcommit 7d8a9502141c230bb8cff2acb23bae361475716e[m
+Author: mazdai <you@example.com>
+Date:   Sat Oct 10 13:44:07 2020 +0400
+
+    создал клас колоды поправил ошибки
+
+[33mcommit 96cf49ea43962ed9cc4a5452c1062aa43a95201f[m
+Author: mazdai <you@example.com>
+Date:   Sat Oct 10 13:18:54 2020 +0400
+
+    класс карты
+
+[33mcommit 12be9da1eac4e0490b9f0387e052cc47229dcc2f[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: mazdai <you@example.com>
+Date:   Sat Oct 10 12:37:34 2020 +0400
+
+    Update add
+
+[33mcommit 3aeefa45a5384f018ac6855b9b7f8dd8630095d3[m
+Author: mazdai <you@example.com>
+Date:   Sat Oct 10 12:33:45 2020 +0400
+
+    first commit

@@ -29,7 +29,7 @@ module GameM
   end
 
   def ask_user_move(user)
-    puts "\nWhat do you want to do?"
+     puts "\nDo you want?"
     puts "Enter 'p' to pass the move." unless user.passed_the_move
     puts "Enter 't' to get one card." unless user.took_the_card
     puts "Enter 'o' to open cards."
