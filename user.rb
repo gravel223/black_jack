@@ -1,20 +1,23 @@
 class User
-  attr_reader :name, :cards, :balanse, :passed_the_move, :took_the_card, :took_the_card
+  attr_reader :name, :cards, :balance
+  attr_reader :passed_the_move, :took_the_card, :opened_cards
+
   def initialize(name)
     @name = name
+    @balance = START_BALANCE
     @cards = []
-    @balanse = START_BALANCE
     @passed_the_move = false
     @took_the_card = false
     @opened_cards = false
   end
 
   def make_bet
-    @balanse - BET_AMOUNT
+    @balance -= BET_AMOUNT
+    BET_AMOUNT
   end
 
   def take_money(amount)
-    @balanse = amount
+    @balance += amount
   end
 
   def take_cards(cards)

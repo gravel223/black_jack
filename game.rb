@@ -52,7 +52,6 @@ class Game
     until @game_over
       player_move
       break if @game_over || players_cards_limit_reached?
-
       dealer_move
       stop_game if players_cards_limit_reached?
     end

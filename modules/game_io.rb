@@ -9,10 +9,9 @@ module GameIO
   def player_name
     puts 'Please enter your name.'
     name = prompt
-    raise unless name != ''
-
+    fail unless name != ''
     name
-  rescue StandardError
+  rescue
     puts 'Name cannot be blank. Please try again.'
     retry
   end
@@ -21,16 +20,15 @@ module GameIO
     ask_user_move(user)
     code = prompt
     exit_game if code == 'q'
-    raise unless %w[p t o].include? code
-
+    fail unless %w(p t o).include? code
     code
-  rescue StandardError
+  rescue
     puts 'Command is invalid. Please try again.'
     retry
   end
 
   def ask_user_move(user)
-    puts "\nDo you want?"
+    puts "\nWhat do you want to do?"
     puts "Enter 'p' to pass the move." unless user.passed_the_move
     puts "Enter 't' to get one card." unless user.took_the_card
     puts "Enter 'o' to open cards."
