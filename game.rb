@@ -1,5 +1,5 @@
 class Game
-  include GameM
+  include GameIO
 
   def initialize
     game_greeting
@@ -52,6 +52,7 @@ class Game
     until @game_over
       player_move
       break if @game_over || players_cards_limit_reached?
+
       dealer_move
       stop_game if players_cards_limit_reached?
     end
@@ -138,4 +139,3 @@ class Game
     @player.balance == 0 || @dealer.balance == 0
   end
 end
-

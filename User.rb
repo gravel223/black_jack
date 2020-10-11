@@ -1,5 +1,4 @@
 class User
-
   attr_reader :name, :cards, :balanse, :passed_the_move, :took_the_card, :took_the_card
   def initialize(name)
     @name = name
@@ -9,7 +8,6 @@ class User
     @took_the_card = false
     @opened_cards = false
   end
-
 
   def make_bet
     @balanse - BET_AMOUNT
@@ -53,7 +51,6 @@ class User
     @opened_cards = false
   end
 
-
   protected
 
   BET_AMOUNT = 10
@@ -86,5 +83,3 @@ class User
     command == 'o'
   end
 end
-
-

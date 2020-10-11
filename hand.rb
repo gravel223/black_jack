@@ -42,7 +42,7 @@ class Hand
   protected
 
   def get_card_score(card)
-    if %w(J Q K).include? card.value
+    if %w[J Q K].include? card.value
       DEFAULT_VALUE
     elsif card.value == 'A'
       ACE_MIN_VALUE

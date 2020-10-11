@@ -18,6 +18,7 @@ class Dealer < User
   end
 
   protected
+
   def think
     Message.show("#{name} thinking...")
     sleep(THINKING_TIME)

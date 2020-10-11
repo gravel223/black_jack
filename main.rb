@@ -9,4 +9,3 @@ require_relative 'modules/game_m'
 require_relative 'game'
 
 Game.new
-
