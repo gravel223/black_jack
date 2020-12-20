@@ -12,4 +12,8 @@ class Bank
   def pay_bet(bet)
     @money -= bet
   end
+
+  def show_money
+    print "#{@money}"
+  end
 end
