@@ -1,6 +1,7 @@
 class Deck
-  CARD_SUITS = %w(♡ ♧ ♢ ♤)
-  CARD_VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A)
+  CARD_SUITS = %w(♡ ♧ ♢ ♤).freeze
+  CARD_VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
+
 
   attr_reader :cards
 
