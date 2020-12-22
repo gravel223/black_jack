@@ -1,10 +1,10 @@
 class Dealer < Player
   def initialize(name = 'Dealer')
-    super()
+    super(name)
   end
 
   def take_cards(cards)
     super(cards)
-    puts "#{name} взял карту"
+    "#{name} взял карту"
   end
 end

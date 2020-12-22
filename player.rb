@@ -1,7 +1,7 @@
 class Player
   attr_reader :name
   attr_accessor :bank, :card
-  def initialize
+  def initialize(name)
     @name = name
     @bank = 100
     @cards = []
@@ -43,7 +43,7 @@ class Player
   end
 end
 
-protected
+protected_methods
 
 def can_take_cards?
   @cards.size < 3
