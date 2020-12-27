@@ -2,26 +2,17 @@ class Interface
   def start_game
     @game = Game.new(introduce)
     hello_player
-    menu
-
+    new_game
   end
 
   def new_game
+    puts "######БЛЕКДЖЕК!######"
     game_over if @game.money_empty?
     @game.new_deck
     @game.player_clean_card
+    round
   end
   private
-
-  def menu
-    loop do
-      text_menu
-      puts "Ввод: "
-      enter = gets.chomp.to_i
-      break if enter == 2
-      new_game if enter == 1
-    end
-  end
 
   def introduce
     @user = User.new(ask_name)
@@ -36,12 +27,22 @@ class Interface
     puts "Привет, #{@user.name}. Добро пожаловать в блекджек!"
   end
 
-  def text_menu
-    puts "Веведите 1 - Новая партия"
-    puts "Веведите 2 - Выход"
+  def game_over
+    puts "Ваш счет: #{@user.bank}. Счет диллера: #{@game.dealer.bank}"
   end
 
-  def game_over
-    puts "у вас на счету #{@game}"
+  def round
+    @game.take_two_card_make_bet
+    start_info
+
+  end
+
+  def start_info
+    puts "______++++ Информация ++++______"
+    puts "#{@game.user.score} твои очки"
+    puts "#{@user.name}: #{@game.user.bank} долларов"
+    puts "#{@game.dealer.name}: #{@game.dealer.bank} долларов"
+    puts "Карты #{@user.name} #{@game.user.all_card}"
+    puts "Карты #{@game.dealer.name} #{@game.dealer.hidden_cards}"
   end
   end

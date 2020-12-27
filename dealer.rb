@@ -7,4 +7,10 @@ class Dealer < Player
     super(cards)
     "#{name} взял карту"
   end
+
+  def hidden_cards
+    hidden_card = "*"
+    @cards.each { hidden_card = "#{hidden_card}" }
+    hidden_card
+  end
 end

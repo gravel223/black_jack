@@ -3,12 +3,11 @@ class Game
   def initialize(name)
     @user = User.new(name)
     @dealer = Dealer.new
-    @bank = Bank.new
   end
 
   def player_clean_card
     @user.cards = []
-    @dealer. cards = []
+    @dealer.cards = []
   end
 
   def card_limit?(player)
@@ -20,6 +19,15 @@ class Game
   end
   def money_empty?
     @user.bank <= 0 || @dealer.bank <= 0
+  end
+
+  def take_two_card_make_bet
+    @user.make_money(@bank)
+    @dealer.make_money(@bank)
+    2.times do
+      @user.take_cards(@deck)
+      @dealer.take_cards(@deck)
+    end
   end
 
   def new_deck

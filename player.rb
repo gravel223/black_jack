@@ -1,6 +1,6 @@
 class Player
   attr_reader :name
-  attr_accessor :bank, :card
+  attr_accessor :bank, :cards
   def initialize(name)
     @name = name
     @bank = 100
@@ -9,28 +9,20 @@ class Player
 
   def make_money(bank)
     @bank -= 10
-    bank.accept_bet(10)
+    bank
   end
 
   def add_money(money)
     @bank += money
   end
 
-  def take_cards(cards)
-    @cards.concat(cards) if can_take_cards?
+  def take_cards(deck)
+    card = deck.cards.sample
+    @cards << card
+    deck.cards.delete(card)
   end
 
   def score
-    @score = 0
-    @cards.each do |card|
-      @score += if @score + card.value.max > 21
-                  card.value.min
-                else
-                  card.value.max
-                end
-
-    end
-    @score
   end
 
   def all_card
@@ -38,9 +30,6 @@ class Player
     @cards.each { |card| all_card = "#{all_card} #{card.face}" }
   end
 
-  def show_player_balanse
-    "#{@name} ваш баланс #{@bank}"
-  end
 end
 
 protected_methods
