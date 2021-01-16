@@ -1,14 +1,16 @@
 class Player
   attr_reader :name
   attr_accessor :bank, :cards
+  TEN = 10
+  HUNDERED = 100
   def initialize(name)
     @name = name
-    @bank = 100
+    @bank = HUNDERED
     @cards = []
   end
 
   def make_money(bank)
-    @bank -= 10
+    @bank -= TEN
     bank
   end
 
@@ -26,8 +28,8 @@ class Player
   end
 
   def all_card
-    all_card = ""
-    @cards.each { |card| all_card = "#{all_card} #{card.face}" }
+    cards = ""
+    @cards.each{|card| cards = card.face_card}
   end
 
 end
