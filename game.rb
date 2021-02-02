@@ -10,6 +10,20 @@ class Game
     @dealer.cards = []
   end
 
+  def moneyes_of_winner
+
+  end
+
+  def win
+    if score_limit?(@user)
+      @dealer
+    elsif score_limit(@dealer)
+      @user
+    elsif @dealer.score != @user.score
+      [@user, @dealer].max_by(&:score)
+
+  end
+
   def card_limit?(player)
     player.card.size > 2
   end

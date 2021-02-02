@@ -7,7 +7,7 @@ class Deck
   end
 
   def give_card
-
+    @cards.delete_at(0)
   end
 
   private
