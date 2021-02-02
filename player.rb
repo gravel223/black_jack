@@ -19,12 +19,18 @@ class Player
   end
 
   def take_cards(deck)
-    card = deck.cards.sample
-    @cards << card
-    deck.cards.delete(card)
+    desk.give_card
   end
 
   def score
+    @score = 0
+    @card.each do |card|
+      @score += if @score + card.value.max > 21
+        card.value.min
+      else
+        card.value.max
+      end
+      @score
   end
 
   def all_card
@@ -38,4 +44,5 @@ protected_methods
 
 def can_take_cards?
   @cards.size < 3
+end
 end

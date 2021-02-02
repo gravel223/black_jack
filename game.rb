@@ -10,8 +10,15 @@ class Game
     @dealer.cards = []
   end
 
-  def moneyes_of_winner
-
+  def moneys_of_winner
+    if win
+      win.add_money(@bank.money)
+    else
+      amount = @bank.money / 2
+      @user.add_money(amount)
+      @dealer.add_money(amount)
+    end
+    @bank.pay_bet(@bank.money)
   end
 
   def win
@@ -21,7 +28,7 @@ class Game
       @user
     elsif @dealer.score != @user.score
       [@user, @dealer].max_by(&:score)
-
+    end
   end
 
   def card_limit?(player)

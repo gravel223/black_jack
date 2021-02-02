@@ -31,10 +31,65 @@ class Interface
     puts "Ваш счет: #{@user.bank}. Счет диллера: #{@game.dealer.bank}"
   end
 
+  def open_cards
+    @game.moneys_of_winner.money_empty?
+    result_info
+    more_game
+  end
+
   def round
     @game.take_two_card_make_bet
     start_info
+    step
+    open_cards
+  end
 
+  def step
+
+  end
+
+  def choice_card
+    if @game.card_limit?(@game.user)
+      card_limit
+    else
+      @user.take_card(@game.user)
+      show_info
+      if @game.score_limit?(@game.user)
+        open_cards
+      else
+        @game.dealer.step(@game.deck)
+        step
+      end
+    end
+  end
+
+  def skip(player)
+    puts "#{player.name} пропускает ход"
+  end
+
+  def menu_step
+    puts "Взять карту: give | открыть карты: open | пропустить: skip"
+    gets.chomp
+  end
+
+  def more_game
+    puts "Сыграем еще кон? (y - да  n - нет)"
+    case gets.chomp
+    when 'y'
+      new_game
+    when 'n'
+      exit
+    else
+      more_game
+    end
+
+  end
+
+  def result_info
+    puts "РЕЗУЛЬТАТ"
+    puts "победил: #{winner_name}"
+    puts "Карты диллера #{@game.dealer.all_card} очки #{@game.dealer.score}"
+    puts "Карты игрока #{@game.user.all_card} очки #{@game.dealer.score}"
   end
 
   def start_info
@@ -45,4 +100,13 @@ class Interface
     puts "Карты #{@user.name} #{@game.user.all_card}"
     puts "Карты #{@game.dealer.name} #{@game.dealer.hidden_cards}"
   end
+
+  def winner_name
+    if @game.win
+      @game.win.name
+    else
+      "ничья"
+    end
+  end
+
   end
