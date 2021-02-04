@@ -32,7 +32,7 @@ class Interface
   end
 
   def open_cards
-    @game.moneys_of_winner.money_empty?
+    @game.money_empty?
     result_info
     more_game
   end
@@ -45,7 +45,18 @@ class Interface
   end
 
   def step
+    case menu_step
+    when 'give'
+      choice_card
+    when 'open'
+      open_cards
+    when 'skip'
+      skip
+      @game.dealer.step(@game.desk)
+      step
+    end
 
+    end
   end
 
   def choice_card
@@ -109,4 +120,8 @@ class Interface
     end
   end
 
+  def card_limit
+    puts 'Вам нельзя брать карту'
+    step
   end
+ end
