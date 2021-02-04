@@ -31,6 +31,7 @@ class Player
         card.value.max
       end
       @score
+    end
   end
 
   def all_card
@@ -38,11 +39,9 @@ class Player
     @cards.each{|card| cards = card.face_card}
   end
 
-end
+protected
 
-protected_methods
-
-def can_take_cards?
-  @cards.size < 3
-end
+  def can_take_cards?
+    @cards.size < 3
+  end
 end
