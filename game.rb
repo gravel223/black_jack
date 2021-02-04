@@ -3,6 +3,7 @@ class Game
   def initialize(name)
     @user = User.new(name)
     @dealer = Dealer.new
+    @bank = Bank.new
   end
 
   def player_clean_card
@@ -24,7 +25,7 @@ class Game
   def win
     if score_limit?(@user)
       @dealer
-    elsif score_limit(@dealer)
+    elsif score_limit?(@dealer)
       @user
     elsif @dealer.score != @user.score
       [@user, @dealer].max_by(&:score)
@@ -35,7 +36,7 @@ class Game
     player.card.size > 2
   end
 
-  def score_limit(player)
+  def score_limit?(player)
     player.score > 21
   end
   def money_empty?
