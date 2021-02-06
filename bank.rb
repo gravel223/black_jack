@@ -13,7 +13,4 @@ class Bank
     @money -= bet
   end
 
-  def show_money
-    print "#{@money}"
-  end
 end

@@ -18,13 +18,13 @@ class Player
     @bank += money
   end
 
-  def take_cards(deck)
+  def take_cards(desk)
     desk.give_card
   end
 
   def score
     @score = 0
-    @card.each do |card|
+    @cards.each do |card|
       @score += if @score + card.value.max > 21
         card.value.min
       else
@@ -37,6 +37,7 @@ class Player
   def all_card
     cards = ""
     @cards.each{|card| cards = card.face_card}
+    cards
   end
 
 protected

@@ -11,6 +11,6 @@ class Card
   end
 
   def face_card
-    rank + suit
+    "#{self.rank} #{self.suit}"
   end
 end

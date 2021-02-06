@@ -46,16 +46,14 @@ class Interface
 
   def step
     case menu_step
-    when 'give'
-      choice_card
-    when 'open'
-      open_cards
-    when 'skip'
-      skip
-      @game.dealer.step(@game.desk)
-      step
-    end
-
+      when 'give'
+        choice_card
+      when 'open'
+        open_cards
+      when 'skip'
+        skip(@game.user)
+        @game.dealer.step(@game.deck)
+        step
     end
   end
 
@@ -86,14 +84,13 @@ class Interface
   def more_game
     puts "Сыграем еще кон? (y - да  n - нет)"
     case gets.chomp
-    when 'y'
-      new_game
-    when 'n'
-      exit
-    else
-      more_game
+      when 'y'
+        new_game
+      when 'n'
+        exit
+      else
+        more_game
     end
-
   end
 
   def result_info
@@ -124,4 +121,5 @@ class Interface
     puts 'Вам нельзя брать карту'
     step
   end
+
  end
