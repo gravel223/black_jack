@@ -61,7 +61,7 @@ class Interface
     if @game.card_limit?(@game.user)
       card_limit
     else
-      @user.take_card(@game.user)
+      @user.take_cards(@game.user)
       show_info
       if @game.score_limit?(@game.user)
         open_cards

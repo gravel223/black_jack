@@ -33,7 +33,7 @@ class Game
   end
 
   def card_limit?(player)
-    player.card.size > 2
+    player.cards.size > 2
   end
 
   def score_limit?(player)

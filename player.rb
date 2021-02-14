@@ -18,8 +18,10 @@ class Player
     @bank += money
   end
 
-  def take_cards(desk)
-    desk.give_card
+  def take_cards(deck)
+    card = deck.cards.sample
+    @cards << card
+    deck.cards.delete(card)
   end
 
   def score
@@ -35,9 +37,7 @@ class Player
   end
 
   def all_card
-    cards = ""
-    @cards.each{|card| cards = card.face_card}
-    cards
+    @cards.map(&:face_card).join(' ')
   end
 
 protected
