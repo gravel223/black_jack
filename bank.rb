@@ -7,6 +7,7 @@ class Bank
     @money = 0
   end
 
+
   def table_bets
     @money += TWO_BET
   end

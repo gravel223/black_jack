@@ -44,9 +44,9 @@ class Game
   end
 
   def take_two_card_make_bet
-     @dealer.make_money(@bank)
-     p @user.make_money(@bank)
-     @bank.table_bets
+    @dealer.make_money(@dealer.bank)
+    @user.make_money(@user.bank)
+    @bank.table_bets
     2.times do
        @user.take_card(@deck)
        @dealer.take_card(@deck)
