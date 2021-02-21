@@ -3,10 +3,11 @@ class Player
   attr_accessor :bank, :cards
 
   TEN = 10
+  HUNDRED = 100
 
   def initialize(name)
     @name = name
-    @bank = 100
+    @bank = HUNDRED
     @cards = []
   end
 

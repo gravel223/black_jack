@@ -13,7 +13,6 @@ class Game
 
   def moneys_of_winner
     if win
-      puts @bank.money
       win.add_money(@bank.money)
     else
       amount = @bank.money / 2
@@ -45,8 +44,8 @@ class Game
   end
 
   def take_two_card_make_bet
-    @dealer.make_money(@bank)
-     @user.make_money(@bank)
+     @dealer.make_money(@bank)
+     p @user.make_money(@bank)
      @bank.table_bets
     2.times do
        @user.take_card(@deck)
