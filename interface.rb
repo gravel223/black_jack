@@ -1,6 +1,6 @@
 class Interface
   def start_game
-    @game = Game.new(introduce)
+    @game = Game.new(ask_name)
     hello_player
     new_game
   end
@@ -12,11 +12,8 @@ class Interface
     @game.player_clean_card
     round
   end
-  private
 
-  def introduce
-    @user = User.new(ask_name)
-  end
+  private
 
   def ask_name
     puts "Как вас зовут"
@@ -24,14 +21,15 @@ class Interface
   end
 
   def hello_player
-    puts "Привет, #{@user.name}. Добро пожаловать в блекджек!"
+    puts "Привет, #{@game.user.name}. Добро пожаловать в блекджек!"
   end
 
   def game_over
-    puts "Ваш счет: #{@user.bank}. Счет диллера: #{@game.dealer.bank}"
+    puts "Ваш счет: #{@game.user.bank}. Счет диллера: #{@game.dealer.bank}"
   end
 
   def open_cards
+    @game.moneys_of_winner
     @game.money_empty?
     result_info
     more_game
@@ -45,6 +43,7 @@ class Interface
   end
 
   def step
+    card_limit if @game.card_limit?(@game.user)
     case menu_step
       when 'give'
         choice_card
@@ -52,24 +51,30 @@ class Interface
         open_cards
       when 'skip'
         skip(@game.user)
-        @game.dealer.step(@game.deck)
+        dealer_step
         step
     end
   end
 
-  def choice_card
-    if @game.card_limit?(@game.user)
-      card_limit
+  def dealer_step
+    card = @game.dealer.step(@game.deck)
+    if card
+      puts "Дилер взял карту #{card.face}"
     else
-      @user.take_cards(@game.user)
-      show_info
-      if @game.score_limit?(@game.user)
+      puts "Дилер пропустил ход"
+    end
+  end
+
+  def choice_card
+    dealer_step
+    card = @game.user.take_card(@game.deck)
+    puts "Игрок взял карту #{card.face}"
+    start_info
+    if @game.score_limit?(@game.user)
         open_cards
       else
-        @game.dealer.step(@game.deck)
         step
       end
-    end
   end
 
   def skip(player)
@@ -97,15 +102,17 @@ class Interface
     puts "РЕЗУЛЬТАТ"
     puts "победил: #{winner_name}"
     puts "Карты диллера #{@game.dealer.all_card} очки #{@game.dealer.score}"
-    puts "Карты игрока #{@game.user.all_card} очки #{@game.dealer.score}"
+    puts "Карты игрока #{@game.user.all_card} очки #{@game.user.score}"
+    puts "#{@game.user.name}: #{@game.user.bank} долларов"
+    puts "#{@game.dealer.name}: #{@game.dealer.bank} долларов"
   end
 
   def start_info
     puts "______++++ Информация ++++______"
     puts "#{@game.user.score} твои очки"
-    puts "#{@user.name}: #{@game.user.bank} долларов"
+    puts "#{@game.user.name}: #{@game.user.bank} долларов"
     puts "#{@game.dealer.name}: #{@game.dealer.bank} долларов"
-    puts "Карты #{@user.name} #{@game.user.all_card}"
+    puts "Карты #{@game.user.name} #{@game.user.all_card}"
     puts "Карты #{@game.dealer.name} #{@game.dealer.hidden_cards}"
   end
 
@@ -118,8 +125,8 @@ class Interface
   end
 
   def card_limit
-    puts 'Вам нельзя брать карту'
-    step
+    puts 'Достигнут лимит карт! Игра окончена!'
+    open_cards
   end
 
  end
